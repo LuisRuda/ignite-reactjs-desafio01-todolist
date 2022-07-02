@@ -1,8 +1,9 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 import { PlusCircle } from 'phosphor-react';
 
-import Header from './components/Header';
+import { Header } from './components/Header';
+import { Task } from './components/Task';
 
 import listEmptyIcon from './assets/list-empty-icon.svg';
 
@@ -31,11 +32,15 @@ const App: React.FC = () => {
 
           <div className={styles.concluded}>
             <strong>Concluídas</strong>
-            <span>0</span>
+            <span>{`0 de ${tasks.length}`}</span>
           </div>
         </div>
 
         <main>
+          {tasks.length > 0 && tasks.map(task => (
+            <Task />
+          ))}
+
           {tasks.length === 0 && (
             <div className={styles.listEmptyContainer}>
               <img src={listEmptyIcon} alt="Lista vazia" />

@@ -1,0 +1,81 @@
+.taskContainer {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--gray-500);
+  border: 1px solid var(--gray-400);
+}
+
+.taskContainer + .taskContainer {
+  margin-top: 0.75rem;
+}
+
+.taskContainer input[type="radio"] {
+  width: 1.125rem;
+  height: 1.125rem;
+  padding: 0.5rem;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  border: 1.5px solid var(--blue-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskContainer input[type="radio"]:hover {
+  background-color: rgba(78, 168, 222, 0.1);
+  border: 1.5px solid var(--blue-500);
+}
+
+.taskContainer input[type="radio"]:checked {
+  border: 1.5px solid var(--purple-500);
+  background-color: var(--purple-500);
+}
+
+.taskContainer input[type="radio"]:checked::before {
+  content: "\2713";
+  font-size: 0.8rem;
+  color: var(--gray-100);
+}
+
+.taskContainer input[type="radio"]:checked:hover {
+  border: 1.5px solid var(--purple-300);
+  background-color: var(--purple-300);
+}
+
+.taskContainer span {
+  flex: 1;
+  padding: 0 1rem;
+  line-height: 1.4;
+  font-size: 0.875rem;
+  color: var(--gray-100);
+  margin-top: -0.1rem;
+}
+
+.taskContainer button {
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem;
+  background: transparent;
+  margin-top: -0.5rem;
+  transition: background-color 0.1s;
+}
+
+.taskContainer button:hover {
+  background: var(--gray-400);
+}
+
+.taskContainer button svg {
+  color: var(--gray-300);
+}
+
+.taskContainer button:hover svg {
+  color: var(--red-500);
+}
