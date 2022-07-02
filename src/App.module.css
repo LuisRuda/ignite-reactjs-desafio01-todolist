@@ -1,0 +1,60 @@
+.wrapper {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.wrapper form {
+  display: flex;
+  margin-top: -1.68rem;
+}
+
+.wrapper form input {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1,4;
+  height: 3.375rem;
+  border-radius: 8px;
+  margin-right: 0.5rem;
+  color: var(--gray-100);
+  background: var(--gray-500);
+  border: 1px solid var(--gray-700);
+}
+
+.wrapper form input::placeholder {
+  color: var(--gray-300);
+}
+
+.wrapper form button {
+  border: 0;
+  display: flex;
+  font-size: 0.875rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 5.625rem;
+  height: 3.375rem;
+  line-height: 1,4;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--gray-100);
+  background: var(--blue-500);
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.wrapper form button:hover {
+  background: var(--blue-300);
+}
+
+.wrapper form button svg {
+  margin-left: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+}
