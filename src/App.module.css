@@ -53,6 +53,59 @@
   margin-left: 0.3rem;
 }
 
+.listHeader {
+  display: flex;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listHeader strong {
+  font-size: 0.875rem;
+}
+
+.listHeader span {
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+  border-radius: 999px;
+  padding: 0.125rem 0.5rem;
+  color: var(--gray-200);
+  background: var(--gray-400);
+}
+
+.listHeader + .listHeader {
+  margin-left: 0.5rem;
+}
+
+.tasksCreated strong {
+  color: var(--blue-300);
+}
+
+.concluded strong {
+  color: var(--purple-300);
+}
+
+.listEmptyContainer {
+  padding: 4rem;
+  border-radius: 8px;
+  border-top: 1px solid var(--gray-400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listEmptyContainer >img {
+  margin-bottom: 1rem;
+}
+
+.listEmptyContainer strong, p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+
 @media (max-width: 768px) {
   html {
     font-size: 87.5%;
