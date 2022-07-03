@@ -46,6 +46,7 @@ const App: React.FC = () => {
 
   const tasksEmpty = tasks.length === 0;
   const newTaskEmpty = newTaskText.length === 0;
+  const tasksConcludedCounter = tasks.filter(task => task.concluded).length;
 
   return (
     <div>
@@ -75,7 +76,7 @@ const App: React.FC = () => {
           <div className={styles.concluded}>
             <strong>Concluídas</strong>
             <span>
-              {tasksEmpty ? 0 : `${tasks.length} de ${tasks.length}`}
+              {tasksEmpty ? 0 : `${tasksConcludedCounter} de ${tasks.length}`}
             </span>
           </div>
         </div>
