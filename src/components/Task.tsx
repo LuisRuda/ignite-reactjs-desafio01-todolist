@@ -6,10 +6,11 @@ import { ITask } from '../App';
 
 interface ITaskProps {
   data: ITask;
+  onRemoveTask: (taskId: string) => void;
   onCheckOrUncheckTask: (taskId: string) => void;
 }
 
-const Task: React.FC<ITaskProps> = ({ data, onCheckOrUncheckTask }) => {
+const Task: React.FC<ITaskProps> = ({ data, onCheckOrUncheckTask, onRemoveTask }) => {
   return (
     <li className={styles.taskContainer}>
       <input 
@@ -21,7 +22,7 @@ const Task: React.FC<ITaskProps> = ({ data, onCheckOrUncheckTask }) => {
         className={data.concluded ? styles.taskConcludedText : styles.taskText}>
           {data.text}
       </span>
-      <button>
+      <button onClick={() => onRemoveTask(data.id)}>
         <Trash size={20} />
       </button>
     </li>

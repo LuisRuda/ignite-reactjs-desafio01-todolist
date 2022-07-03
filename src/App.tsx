@@ -52,6 +52,10 @@ const App: React.FC = () => {
     }));
   }
 
+  const removeTask = (taskId: string) => {
+    setTasks(oldTasks => oldTasks.filter(task => task.id !== taskId));
+  }
+
   const handleNewTaskInvalid = (event: InvalidEvent<HTMLInputElement>) => {
     event.target.setCustomValidity('Esse campo é obrigatório!');
   }
@@ -99,6 +103,7 @@ const App: React.FC = () => {
               <Task 
                 key={task.id}
                 data={task}
+                onRemoveTask={removeTask}
                 onCheckOrUncheckTask={checkOrUncheckTask}/>
             ))}
           </ul>
