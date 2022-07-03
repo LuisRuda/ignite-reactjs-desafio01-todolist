@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent, InvalidEvent } from 'react';
 
 import { PlusCircle } from 'phosphor-react';
 
@@ -13,15 +13,41 @@ import './global.css';
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState([]);
+  const [newTaskText, setNewTaskText] = useState('');
+
+  const handleNewTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.target.setCustomValidity('');
+    setNewTaskText(event.target.value);
+  }
+
+  const handleCreateNewTask = (event: FormEvent) => {
+    event.preventDefault();
+  }
+
+  function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Esse campo é obrigatório!');
+  }
+
+  const tasksEmpty = tasks.length === 0;
+  const newTaskEmpty = newTaskText.length === 0;
 
   return (
     <div>
       <Header />
 
       <div className={styles.wrapper}>
-        <form>
-          <input type="text" placeholder="Adicione uma nova tarefa" />
-          <button type="submit">Criar <PlusCircle size={20} /></button>
+        <form onSubmit={handleCreateNewTask}>
+          <input
+            required
+            type="text"
+            value={newTaskText}
+            onChange={handleNewTaskChange}
+            onInvalid={handleNewTaskInvalid}
+            placeholder="Adicione uma nova tarefa" />
+          <button type="submit" disabled={newTaskEmpty}>
+            Criar
+            <PlusCircle size={20} />
+          </button>
         </form>
 
         <div className={styles.listHeader}>
@@ -32,16 +58,18 @@ const App: React.FC = () => {
 
           <div className={styles.concluded}>
             <strong>Concluídas</strong>
-            <span>{`0 de ${tasks.length}`}</span>
+            <span>
+              {tasksEmpty ? 0 : `${tasks.length} de ${tasks.length}`}
+            </span>
           </div>
         </div>
 
         <main>
-          {tasks.length > 0 && tasks.map(task => (
+          {!tasksEmpty && tasks.map(task => (
             <Task />
           ))}
 
-          {tasks.length === 0 && (
+          {tasksEmpty && (
             <div className={styles.listEmptyContainer}>
               <img src={listEmptyIcon} alt="Lista vazia" />
               <strong>Você ainda não tem tarefas cadastradas</strong>
