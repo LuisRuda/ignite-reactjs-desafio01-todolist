@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, FormEvent, InvalidEvent } from 'react';
 
+import { v4 as uuidv4 } from 'uuid';
 import { PlusCircle } from 'phosphor-react';
 
 import { Header } from './components/Header';
@@ -11,8 +12,14 @@ import styles from './App.module.css';
 
 import './global.css';
 
+export interface ITask {
+  id: string;
+  text: string;
+  concluded: boolean;
+}
+
 const App: React.FC = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
   const [newTaskText, setNewTaskText] = useState('');
 
   const handleNewTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +29,15 @@ const App: React.FC = () => {
 
   const handleCreateNewTask = (event: FormEvent) => {
     event.preventDefault();
+
+    const newTask = {
+      id: uuidv4(),
+      text: newTaskText,
+      concluded: false,
+    }
+
+    setTasks(oldTasks => [...oldTasks, newTask]);
+    setNewTaskText('');
   }
 
   function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
@@ -66,7 +82,7 @@ const App: React.FC = () => {
 
         <main>
           {!tasksEmpty && tasks.map(task => (
-            <Task />
+            <Task key={task.id} data={task} />
           ))}
 
           {tasksEmpty && (

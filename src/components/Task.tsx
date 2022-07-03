@@ -1,14 +1,23 @@
 import React from 'react';
 
-import styles from './Task.module.css';
-
 import { Trash } from 'phosphor-react'
 
-const Task: React.FC = () => {
+import styles from './Task.module.css';
+
+import { ITask } from '../App';
+
+interface ITaskProps {
+  data: ITask;
+}
+
+const Task: React.FC<ITaskProps> = ({data}) => {
   return (
     <div className={styles.taskContainer}>
-      <input type="radio" />
-      <span>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.</span>
+      <input 
+        type="radio"
+        checked={data.concluded}
+        onChange={event => console.log(event)} />
+      <span>{data.text}</span>
       <button>
         <Trash size={20} />
       </button>
