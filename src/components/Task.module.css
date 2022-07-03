@@ -52,8 +52,16 @@
   padding: 0 1rem;
   line-height: 1.4;
   font-size: 0.875rem;
-  color: var(--gray-100);
   margin-top: -0.1rem;
+}
+
+.taskContainer .taskText {
+  color: var(--gray-100);
+}
+
+.taskContainer .taskConcludedText {
+  color: var(--gray-300);
+  text-decoration: line-through;
 }
 
 .taskContainer button {

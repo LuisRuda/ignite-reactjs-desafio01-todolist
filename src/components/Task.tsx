@@ -17,7 +17,10 @@ const Task: React.FC<ITaskProps> = ({ data, onCheckOrUncheckTask }) => {
         type="radio"
         checked={data.concluded}
         onClick={() => onCheckOrUncheckTask(data.id)} />
-      <span>{data.text}</span>
+      <span 
+        className={data.concluded ? styles.taskConcludedText : styles.taskText}>
+          {data.text}
+      </span>
       <button>
         <Trash size={20} />
       </button>
