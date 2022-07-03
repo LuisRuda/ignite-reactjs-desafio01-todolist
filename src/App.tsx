@@ -40,7 +40,19 @@ const App: React.FC = () => {
     setNewTaskText('');
   }
 
-  function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+  const checkOrUncheckTask = (taskId: string) => {
+    setTasks(oldTasks => oldTasks.map(task => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          concluded: !task.concluded,
+        }
+      }
+      return task;
+    }));
+  }
+
+  const handleNewTaskInvalid = (event: InvalidEvent<HTMLInputElement>) => {
     event.target.setCustomValidity('Esse campo é obrigatório!');
   }
 
@@ -82,9 +94,14 @@ const App: React.FC = () => {
         </div>
 
         <main>
-          {!tasksEmpty && tasks.map(task => (
-            <Task key={task.id} data={task} />
-          ))}
+          <ul>
+            {!tasksEmpty && tasks.map(task => (
+              <Task 
+                key={task.id}
+                data={task}
+                onCheckOrUncheckTask={checkOrUncheckTask}/>
+            ))}
+          </ul>
 
           {tasksEmpty && (
             <div className={styles.listEmptyContainer}>
